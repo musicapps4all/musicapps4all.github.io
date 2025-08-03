@@ -3,384 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicApps4All - Making Music Accessible for Everyone</title>
-    <style>
-        /* Global Styles */
-        :root {
-            --primary-color: #4A6FD4;
-            --secondary-color: #FF7B54;
-            --accent-color: #6BCB77;
-            --dark-color: #373B44;
-            --light-color: #F9F7F7;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--light-color);
-            color: var(--dark-color);
-            line-height: 1.6;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header & Banner */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), #2A4FA8);
-            color: white;
-            padding: 20px 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .banner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 60px;
-            margin-right: 15px;
-        }
-        
-        .logo h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-        }
-        
-        .tagline {
-            font-size: 1.1rem;
-            font-weight: 300;
-            margin-top: 5px;
-        }
-        
-        /* Navigation */
-        .nav-container {
-            background-color: white;
-            padding: 15px 0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-        
-        .nav-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .nav-button {
-            background-color: var(--light-color);
-            color: var(--dark-color);
-            border: 2px solid var(--primary-color);
-            border-radius: 25px;
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-button:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Main Content */
-        main {
-            padding: 40px 0;
-        }
-        
-        .hero {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-        
-        .hero-text {
-            flex: 1;
-        }
-        
-        .hero-text h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-        
-        .hero-text p {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-        }
-        
-        .hero-image {
-            flex: 1;
-            text-align: center;
-        }
-        
-        .hero-image img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .cta-button {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            padding: 12px 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .cta-button:hover {
-            background-color: #FF6B3D;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .feature-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-icon {
-            background-color: var(--accent-color);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark-color);
-            color: white;
-            padding: 40px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-column h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-column ul li a {
-            color: #CCC;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-column ul li a:hover {
-            color: white;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: #AAA;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .banner {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .hero {
-                flex-direction: column-reverse;
-                text-align: center;
-            }
-            
-            .nav-buttons {
-                justify-content: center;
-            }
-        }
-    </style>
+    <title>MusicApps4All</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header with Banner -->
     <header>
-        <div class="container banner">
-            <div class="logo">
-                <img src="https://placehold.co/60x60/4A6FD4/FFFFFF?text=MA4A" alt="MusicApps4All Logo">
-                <div>
-                    <h1>MusicApps4All</h1>
-                    <p class="tagline">Making Music Accessible for Everyone</p>
-                </div>
-            </div>
+        <div class="container">
+            <h1>MusicApps4All</h1>
+            <p class="tagline">Explore music through interactive experiences</p>
         </div>
     </header>
-    
-    <!-- Navigation Buttons -->
-    <div class="nav-container">
-        <div class="container nav-buttons">
-            <button class="nav-button">Getting Started</button>
-            <button class="nav-button">Play & Create</button>
-            <button class="nav-button">Song Library</button>
-            <button class="nav-button">App Building</button>
-            <button class="nav-button">For Teachers</button>
-            <button class="nav-button">For Parents</button>
-        </div>
-    </div>
-    
-    <!-- Main Content -->
+
     <main class="container">
-        <section class="hero">
-            <div class="hero-text">
-                <h2>Discover the Joy of Making Music</h2>
-                <p>Welcome to MusicApps4All, where we believe everyone should have the opportunity to create and enjoy music. Our carefully curated collection of apps and resources makes music creation accessible, fun, and educational for all ages and skill levels.</p>
-                <button class="cta-button">Explore Music Apps</button>
-            </div>
-            <div class="hero-image">
-                <img src="https://placehold.co/500x300/6BCB77/FFFFFF?text=Music+for+Everyone" alt="Children and adults making music together">
+        <!-- Music Creator Apps Category -->
+        <section class="app-category">
+            <h2 class="category-title">Music Creator Apps</h2>
+            <div class="app-grid">
+                <div class="app-tile creator">
+                    <img src="https://musicapps4all.github.io/assets/MA4A-improviser-cover.jpg" alt="Improviser">
+                    <div class="app-info">
+                        <h3>Improviser</h3>
+                        <p>Create spontaneous melodies</p>
+                    </div>
+                </div>
+                <div class="app-tile creator">
+                    <img src="https://musicapps4all.github.io/assets/MA4A-chord-tower-cover.jpg" alt="Chord Tower">
+                    <div class="app-info">
+                        <h3>Chord Tower</h3>
+                        <p>Build harmonies layer by layer</p>
+                    </div>
+                </div>
+                <div class="app-tile creator">
+                    <img src="https://musicapps4all.github.io/assets/MA4A-melody-tower-cover.jpg" alt="Melody Tower">
+                    <div class="app-info">
+                        <h3>Melody Tower</h3>
+                        <p>Construct beautiful melodies</p>
+                    </div>
+                </div>
+                <div class="app-tile creator">
+                    <img src="https://musicapps4all.github.io/assets/MA4A-rhythm-poetry-cover.jpg" alt="Rhythm Poetry">
+                    <div class="app-info">
+                        <h3>Rhythm Poetry</h3>
+                        <p>Express rhythm through words</p>
+                    </div>
+                </div>
+                <div class="app-tile creator">
+                    <img src="https://musicapps4all.github.io/assets/MA4A-song-writer-cover.jpg" alt="Song Writer">
+                    <div class="app-info">
+                        <h3>Song Writer</h3>
+                        <p>Compose your own songs</p>
+                    </div>
+                </div>
+                <div class="app-tile creator">
+                    <img src="https://musicapps4all.github.io/assets/MA4A-chord-charter-cover.jpg" alt="Chord Charter">
+                    <div class="app-info">
+                        <h3>Chord Charter</h3>
+                        <p>Map out chord progressions</p>
+                    </div>
+                </div>
             </div>
         </section>
-        
-        <section class="features">
-            <div class="feature-card">
-                <div class="feature-icon">🎵</div>
-                <h3>Learn Music Fundamentals</h3>
-                <p>Interactive lessons and games that teach music theory, rhythm, and instrument basics in a fun, engaging way for all ages.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎹</div>
-                <h3>Create & Compose</h3>
-                <p>Easy-to-use apps that let everyone compose their own music, from simple melodies to complex arrangements.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎼</div>
-                <h3>Song Library</h3>
-                <p>Access a growing collection of songs with integrated apps, videos, and learning materials to master your favorite music.</p>
+
+        <!-- Instrument Apps Category -->
+        <section class="app-category">
+            <h2 class="category-title">Instrument Apps</h2>
+            <div class="app-grid">
+                <div class="app-tile instrument">
+                    <img src="https://musicapps4all.github.io/assets/MA4A-recorder-cover.jpg" alt="Recorder">
+                    <div class="app-info">
+                        <h3>Recorder</h3>
+                        <p>Capture your musical ideas</p>
+                    </div>
+                </div>
+                <div class="app-tile instrument">
+                    <img src="https://musicapps4all.github.io/assets/MA4A-virtual-drum-kit-cover.jpg" alt="Virtual Drum Kit">
+                    <div class="app-info">
+                        <h3>Virtual Drum Kit</h3>
+                        <p>Play rhythms on virtual drums</p>
+                    </div>
+                </div>
             </div>
         </section>
-        
-        <section class="features">
-            <div class="feature-card">
-                <div class="feature-icon">💻</div>
-                <h3>App Building Resources</h3>
-                <p>Learn how to code your own music apps with tutorials, starter code, and a supportive community of developers.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌈</div>
-                <h3>Accessible for All</h3>
-                <p>Apps and resources designed with accessibility in mind, ensuring everyone can participate in the joy of music making.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌐</div>
-                <h3>Global Music Community</h3>
-                <p>Connect with music makers of all ages around the world, share your creations, and learn from others.</p>
+
+        <!-- Activities Category -->
+        <section class="app-category">
+            <h2 class="category-title">Activities</h2>
+            <div class="app-grid">
+                <div class="app-tile activity">
+                    <img src="https://musicapps4all.github.io/assets/MA4A-music-symbol-maker-cover.jpg" alt="Music Symbol Maker">
+                    <div class="app-info">
+                        <h3>Music Symbol Maker</h3>
+                        <p>Create custom music notation</p>
+                    </div>
+                </div>
+                <div class="app-tile activity">
+                    <img src="https://musicapps4all.github.io/assets/MA4A-keyboard-builder-cover.jpg" alt="Keyboard Builder">
+                    <div class="app-info">
+                        <h3>Keyboard Builder</h3>
+                        <p>Design your own keyboard layout</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
-    
-    <!-- Footer -->
+
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>MusicApps4All</h3>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Our Mission</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Support</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="#">App Library</a></li>
-                        <li><a href="#">Teaching Materials</a></li>
-                        <li><a href="#">Guides for Parents</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Community</h3>
-                    <ul>
-                        <li><a href="#">Forum</a></li>
-                        <li><a href="#">Share Your Music</a></li>
-                        <li><a href="#">Events</a></li>
-                        <li><a href="#">Newsletter</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Connect</h3>
-                    <ul>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">YouTube</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 MusicApps4All.com - Making Music Accessible for Everyone</p>
+            <p>&copy; 2025 MusicApps4All. All apps are free to use.</p>
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
             </div>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
