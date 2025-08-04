@@ -1,10 +1,45 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Only select .app-tile elements that are NOT links (i.e., not <a>)
+    // --- Tabbed Navigation Logic ---
+    const navButtons = document.querySelectorAll('.nav-button');
+    const mainContent = document.getElementById('main-content');
+    const tabContents = document.querySelectorAll('.tab-content');
+    let activeTab = null;
+
+    navButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.dataset.target;
+            const targetContent = document.getElementById(targetId);
+
+            // If the clicked tab is already active, deactivate it
+            if (this.classList.contains('active')) {
+                this.classList.remove('active');
+                targetContent.style.display = 'none';
+                mainContent.style.display = 'block';
+                activeTab = null;
+            } else {
+                // Deactivate any previously active tab
+                if (activeTab) {
+                    activeTab.classList.remove('active');
+                }
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.style.display = 'none');
+
+                // Activate the new tab
+                this.classList.add('active');
+                mainContent.style.display = 'none';
+                targetContent.style.display = 'block';
+                activeTab = this;
+            }
+        });
+    });
+
+
+    // --- Original App Tile Logic ---
     const inactiveTiles = document.querySelectorAll('.app-tile:not(a.app-tile)');
     
     inactiveTiles.forEach(tile => {
         tile.addEventListener('click', function(e) {
-            // Add a pulse animation effect when clicked
             this.classList.add('pulse');
             
             setTimeout(() => {
@@ -19,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add pulse animation CSS, if not already present
     if (!document.getElementById('pulse-style')) {
         const style = document.createElement('style');
         style.id = 'pulse-style';
