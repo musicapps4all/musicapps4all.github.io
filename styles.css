@@ -34,10 +34,9 @@ body {
 }
 
 header {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: #fff; /* Changed background to white */
+    color: var(--primary-color); /* Changed text color to dark blue-grey */
     padding: 20px 0;
-    margin-bottom: 40px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -53,9 +52,69 @@ header h1 {
     margin-top: 5px;
 }
 
-main {
-    min-height: calc(100vh - 200px);
+/* Navigation Styles */
+.main-nav {
+    background-color: var(--primary-color); /* Changed background to dark blue-grey */
+    padding: 10px 0; /* Reduced padding to make it thinner */
+    margin-bottom: 40px;
+}
+
+.main-nav .container {
+    display: flex;
+    justify-content: center;
+    gap: 0; /* Removed gap to have buttons touch */
+    flex-wrap: wrap;
+}
+
+.nav-button {
+    text-decoration: none;
+    color: white;
+    background-color: transparent;
+    border: 1px solid #7a8285; /* Thinner, subtle border */
+    border-radius: 0; /* Sharp corners */
+    padding: 12px 24px;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    font-size: 0.9rem;
+    flex-grow: 1; /* Allows buttons to fill space */
+    text-align: center;
+    cursor: pointer;
+}
+
+.nav-button:hover, .nav-button.active {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border-color: var(--accent-color);
+}
+
+#main-content {
     margin-bottom: 60px;
+}
+
+.tab-content {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    min-height: 40vh;
+    margin-bottom: 60px;
+    padding: 40px;
+    max-width: 800px; /* Constrain width for better readability */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tab-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 25px; /* Increased space after title */
+}
+
+.tab-content p {
+    line-height: 1.7; /* Increase line spacing */
+    margin-bottom: 1.75em; /* Create strong paragraph breaks */
+}
+
+.tab-content p:last-of-type {
+    margin-bottom: 0; /* Remove margin from the last paragraph */
 }
 
 .app-category {
@@ -190,6 +249,15 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .main-nav .container {
+        flex-direction: column; /* Stack buttons vertically on small screens */
+    }
+
+    .nav-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
     .app-grid {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: 15px;
