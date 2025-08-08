@@ -1,0 +1,371 @@
+html, body, #app-wrapper, .main-content {
+  height: 100%; min-height: 0; min-width: 0;
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+#app-wrapper { 
+  display: flex; 
+  flex-direction: column; 
+  height: 100vh;
+  padding-top: 39px; /* Pushes content down to clear fixed header */
+}
+.controls-bar {
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 1vmin;
+  background: #faf8f0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1vw;
+  border-bottom: 1px solid #eee;
+  z-index: 10;
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-basis: auto;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1vmin;
+  justify-content: center;
+  align-items: stretch;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.main-content {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-top: 1vmin; /* Add space between menu and grid */
+}
+.proportional-grid-wrapper {
+  flex: 1 1 0;
+  min-height: 0; min-width: 0;
+  display: flex;
+  /* align-items: center; and justify-content: center; REMOVED to allow stretching */
+  position: relative;
+  overflow: hidden;
+}
+.grid {
+  position: relative;
+  width: 100%; height: 100%;
+}
+.cell, .note-button {
+  border-radius: 1vmin;
+  position: absolute;
+  display: flex; justify-content: center; align-items: center;
+  font-weight: bold;
+  color: white;
+  user-select: none;
+  transition: transform 0.1s, background-color 0.3s, font-size 0.2s, color 0.3s;
+  outline: none;
+  min-width: 0; min-height: 0;
+  background: transparent;
+  z-index: 1;
+  font-family: 'EB Garamond', Garamond, 'Times New Roman', Times, serif;
+  letter-spacing: 0.02em;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+.note-button { z-index: 2; }
+.active { transform: scale(1.30); }
+.control-area {
+  outline: none;
+  border-radius: 0.8vmin;
+  display: flex; align-items: center; justify-content: center;
+  font-size: clamp(1.1rem, min(3vw, 3vh, 2em), 2em);
+  padding: 0.3em 1em;
+  background: #fff;
+  color: #333;
+  white-space: nowrap;
+  margin: 0;
+  font-family: inherit;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  cursor: pointer;
+}
+
+.control-area.placeholder {
+  background-color: #f0f0f0;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.keyboard-button {
+    font-weight: bold;
+}
+
+.keyboard-button:hover {
+  background-color: #f5f5f5;
+}
+
+
+.control-area.selected {
+  box-shadow: 0 0 0 0.6vmin #444a, 0 1px 8px #0002;
+  background: #ffff;
+}
+.arrow {
+  cursor: pointer;
+  padding: 0.2em 0.5em;
+  user-select: none;
+  font-size: 1.2em;
+  font-family: inherit;
+}
+.volume-control {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.5vw;
+  font-size: clamp(1rem, min(2.2vw, 2.2vh, 1.2em), 1.2em);
+  user-select: none;
+  padding: 0.1em 0.6em;
+  background: #fff;
+  border-radius: 0.8vmin;
+  margin: 0;
+  font-family: inherit;
+}
+.volume-slider {
+  width: min(16vw, 140px);
+  accent-color: #007AFF;
+  cursor: pointer;
+  min-width: 60px;
+  max-width: 180px;
+}
+.volume-label { font-weight: bold; margin-right: 0.3em; }
+.volume-value {
+  width: 3.2em;
+  text-align: left;
+  color: #444;
+  font-variant-numeric: tabular-nums;
+  font-size: 1em;
+  margin-left: 0.3em;
+  letter-spacing: 0.04em;
+}
+.cell img.solfege-img {
+  max-width: 80%;
+  max-height: 80%;
+  width: auto;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  margin: auto;
+  background: transparent;
+}
+/* New style for the scale dropdown */
+.scale-control-wrapper {
+  padding: 0;
+}
+
+.scale-select {
+  font-family: inherit;
+  font-size: inherit;
+  border-radius: 0.5vmin;
+  border: none;
+  background: transparent;
+  padding: 0.3em 1em;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  color: #333;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Chord toggle button (C/I) in grid cell */
+.chord-toggle-btn {
+  font-family: 'EB Garamond', Garamond, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 2em;
+  background: transparent;
+  border: none;
+  color: #222;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  transition: background 0.15s, color 0.15s, font-size 0.15s;
+}
+.chord-toggle-btn:focus {
+  outline: 2px solid #007AFF;
+  background: #f4f8ff;
+}
+
+/* Light grey border for the cell containing the toggle button */
+.toggle-cell-border {
+  border: 2.5px solid #ddd !important;
+  box-sizing: border-box;
+}
+
+@media (max-width: 550px) {
+  #app-wrapper {
+    padding-top: 30; /* Remove padding for small screens */
+  }
+  .controls-bar {
+    flex-direction: row; /* Keep as row for small screens */
+    align-items: flex-start;
+    gap: 1vw; /* Restore gap for smaller layout */
+  }
+  .control-area, .volume-control {
+    width: auto;
+    margin: 0;
+    border-radius: 0.8vmin;
+    border: 1px solid #ddd;
+    background: #fff;
+    justify-content: center;
+    min-height: 0;
+    min-width: 0;
+    font-size: clamp(1rem, min(2.5vw, 2.5vh, 1.5em), 1.5em);
+  }
+  .control-group {
+    gap: 1vmin;
+  }
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+  animation: fadeIn 0.3s;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 650px;
+  border-radius: 10px;
+  position: relative;
+  animation: slideIn 0.3s;
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Simulated Keyboard Styles */
+#simulated-keyboard {
+  padding: 15px;
+  background: #d1d5db;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: 1px solid #bbb;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.key {
+  background: linear-gradient(to bottom, #fcfcfc, #e8e8e8);
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 1.1em;
+  font-family: Arial, sans-serif;
+  flex-grow: 1;
+  min-width: 30px;
+  text-align: center;
+  box-shadow: 0 2px 0px rgba(0,0,0,0.1);
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #333;
+  cursor: default;
+  transition: all 0.07s ease;
+}
+
+.key-spacer {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.key.pressed {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.key-do { background: #FF3B30; color: white; }
+.key-re { background: #FF9500; color: white; }
+.key-mi { background: #FFCC00; color: white; }
+.key-fa { background: #34C759; color: white; }
+.key-so { background: #30c0c6; color: white; }
+.key-la { background: #007AFF; color: white; }
+.key-ti { background: #AF52DE; color: white; }
+
+.key-sharp { background: #990000; color: white; }
+.key-flat { background: #000099; color: white; }
+
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes slideIn {
+  from {transform: translateY(-50px);}
+  to {transform: translateY(0);}
+}
+
+@media (max-width: 680px) {
+  .modal-content {
+    width: 95%;
+    margin: 5% auto;
+    padding: 10px;
+  }
+
+  #simulated-keyboard {
+    gap: 3px;
+    padding: 10px;
+  }
+  
+  .keyboard-row {
+    gap: 3px;
+  }
+
+  .key {
+    padding: 6px;
+    font-size: 0.9em;
+    min-width: 20px;
+    border-radius: 3px;
+  }
+}

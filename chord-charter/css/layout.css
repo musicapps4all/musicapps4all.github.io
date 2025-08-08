@@ -1,0 +1,92 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  text-align: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px; /* Pushes content down to clear fixed header */
+}
+
+.app-container {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  max-width: calc(100vw - 20px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top-row {
+  width: fit-content;
+  max-width: calc(var(--top-row-columns) * var(--box-size) + (var(--top-row-columns) - 1) * var(--box-gap));
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: var(--box-gap);
+  background: rgba(200,200,200,0.03);
+  flex-wrap: nowrap;
+  padding-right: calc(var(--box-size) * 0.05);
+  align-items: stretch;
+}
+
+.bottom-grid-container {
+  width: 100%; /* Changed from fit-content */
+  max-width: calc(var(--bottom-grid-columns) * var(--box-size) + (var(--bottom-grid-columns) - 1) * var(--box-gap) + 25px); /* Added extra space */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  margin: 0 auto;
+  margin-bottom: calc(var(--box-size) * 0.3);
+  background: rgba(100,100,100,0.01);
+  padding-right: calc(var(--box-size) * 0.05);
+  overflow-x: auto; /* Allow horizontal scrolling if needed */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.box-space {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--box-size);
+  min-width: var(--box-size);
+  background: none;
+  flex-shrink: 0;
+  height: auto;
+}
+
+.bottom-grid {
+  display: grid;
+  grid-template-columns: calc(var(--box-size) + 25px) var(--box-size) repeat(var(--time-sig-beats), var(--box-size)); /* Widen first column */
+  grid-template-rows: var(--box-size) calc(var(--box-size) / 2);
+  gap: 0;
+  width: 100%;
+  height: calc(var(--box-size) + var(--box-size) / 2);
+  background: rgba(200,200,200,0.01);
+}
+
+.play-btn-cell {
+  grid-row: 1 / span 2;
+  grid-column: 1 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.time-signature-cell {
+  grid-row: 1 / span 2;
+  grid-column: 2 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+}

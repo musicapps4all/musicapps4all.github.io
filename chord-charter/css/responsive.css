@@ -1,0 +1,108 @@
+@media (max-width: 768px) { /* New Breakpoint for tablets */
+  :root {
+    --base-box-size: min(100px, 16vw);
+    --box-gap: max(6px, calc(var(--box-size) * 0.20));
+  }
+  .top-row, .bottom-grid-container {
+      max-width: 100%;
+      padding-left: 10px;
+      padding-right: 10px;
+      box-sizing: border-box;
+  }
+  .bottom-grid {
+      transform: scale(0.95);
+      transform-origin: top center;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --base-box-size: min(85px, 18vw);
+    --large-mm-button-size: calc(var(--small-button-size) * 1.8); 
+    --font-size-mm: calc(var(--large-mm-button-size) * 0.5);
+    --row1-bottom-pos: calc(var(--box-size) * 0.38); 
+  }
+  .bottom-grid-container {
+    margin-bottom: calc(var(--box-size) * 0.25);
+  }
+  .instrument-waveform-dial, .key-selector-dial {
+    font-size: clamp(0.68rem, 1.1vw, 0.96em);
+    max-width: 200px;
+  }
+  .bottom-grid {
+      transform: scale(0.9);
+      transform-origin: top center;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --base-box-size: min(70px, 17vw);
+    --large-mm-button-size: calc(var(--small-button-size) * 1.7);
+    --font-size-mm: calc(var(--large-mm-button-size) * 0.45);
+    --row1-bottom-pos: calc(var(--box-size) * 0.35); 
+    --button-float-spacing: calc(var(--box-size) * 0.02); 
+  }
+  .app-container {
+    padding: 5px 0;
+    margin: 5px;
+  }
+  .bottom-grid-container {
+    margin-bottom: calc(var(--box-size) * 0.2);
+  }
+  .top-row {
+    gap: calc(var(--box-gap) * 0.6);
+  }
+  .bottom-grid {
+      transform: scale(0.85);
+      transform-origin: top center;
+  }
+}
+
+@media (max-width: 400px) {
+  :root {
+    --base-box-size: min(60px, 16vw);
+    --large-mm-button-size: calc(var(--small-button-size) * 1.6);
+    --font-size-mm: calc(var(--large-mm-button-size) * 0.4);
+    --row1-bottom-pos: calc(var(--box-size) * 0.32); 
+  }
+  .top-row { gap: calc(var(--box-gap) * 0.5); }
+  .instrument-waveform-dial, .key-selector-dial {
+    font-size: clamp(0.60rem, 0.96vw, 0.88em);
+    max-width: 140px;
+    padding: 0.09em 0.19em;
+  }
+   .bottom-grid {
+      transform: scale(0.8);
+      transform-origin: top center;
+  }
+}
+
+@media (max-width: 350px) {
+  .top-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(var(--box-size), 45vw), 1fr));
+    width: calc(var(--box-size) * 2 + var(--box-gap));
+    justify-content: center;
+    gap: 5px;
+  }
+  .bottom-grid { transform: scale(0.9); transform-origin: top center; }
+  .modal {
+    width: 95%;
+    padding: 20px 15px;
+  }
+  #song-summary-textarea {
+    height: 150px;
+  }
+  .modal-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .modal-btn {
+    width: 100%;
+  }
+  .copy-btn {
+    margin-right: 0;
+    order: 3; /* This will now correctly place it at the end */
+  }
+}

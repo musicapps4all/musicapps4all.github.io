@@ -1,0 +1,46 @@
+:root {
+  --base-box-size: min(113px, 19vw);
+  --box-size: var(--base-box-size);
+  --box-gap: max(8px, calc(var(--box-size) * 0.25));
+  --time-sig-beats: 4; /* Default time signature beats */
+  --top-row-columns: 5; /* 1 for controls, 4 for chords */
+  --bottom-grid-columns: calc(2 + var(--time-sig-beats)); /* 1 for controls, 1 for time sig, rest for beats */
+  --color-c: #F44336;
+  --color-d: #FF9800;
+  --color-e: #FFD600;
+  --color-f: #4CAF50;
+  --color-g: #17b99a;
+  --color-a: #1760af;
+  --color-b: #9C27B0;
+  --picture-highlight: #ffeb3b;
+  --link-active-bg: #4CAF50; /* Green for active link */
+  --link-active-glow: 0 0 8px rgba(76, 175, 80, 0.7); /* Optional glow */
+
+  /* --- Floating Button Sizing & Spacing --- */
+  --small-button-size: calc(var(--box-size) * 0.22); 
+  --large-mm-button-size: calc(var(--small-button-size) * 2.0); 
+  
+  --button-float-spacing: calc(var(--box-size) * 0.03); 
+
+  /* Font Sizes */
+  --font-size-247: calc(var(--box-size) * 0.14);
+  --font-size-aug: calc(var(--box-size) * 0.18);
+  --font-size-sus-base: calc(var(--box-size) * 0.10);
+  --font-size-sus: calc(var(--font-size-sus-base) * 1.25); 
+  --font-size-maj: var(--font-size-sus-base);
+  --font-size-mm: calc(var(--large-mm-button-size) * 0.5); 
+
+  /* --- Vertical Row Positions (from bottom of slot-box) --- */
+  --row1-bottom-pos: calc(var(--box-size) * 0.38); 
+  --row2-bottom-pos: calc(var(--row1-bottom-pos) + var(--small-button-size) + var(--button-float-spacing)); 
+  --row3-bottom-pos: calc(var(--row2-bottom-pos) + var(--small-button-size) + var(--button-float-spacing)); 
+  --row4-bottom-pos: calc(var(--row3-bottom-pos) + var(--small-button-size) + var(--button-float-spacing));
+
+  /* --- Horizontal Positions --- */
+  --right-stack-offset-from-edge: calc(var(--box-size) * 0.02);
+  --center-left-stack-offset-from-right-edge: calc(var(--right-stack-offset-from-edge) + var(--small-button-size) + var(--button-float-spacing) * 0.8);
+  --large-mm-button-offset-from-edge: calc(var(--box-size) * 0.03);
+
+  /* --- Placeholder Image Padding --- */
+  --placeholder-img-top-padding: calc(var(--box-size) * 0.03); 
+}

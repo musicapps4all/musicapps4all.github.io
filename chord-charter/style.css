@@ -1,0 +1,9 @@
+/* 
+  Main CSS file to import all other stylesheets.
+  The order of imports is important.
+*/
+
+@import url('./css/variables.css');
+@import url('./css/layout.css');
+@import url('./css/components.css');
+@import url('./css/responsive.css');

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Apps</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <!-- ===== App Header Start ===== -->
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<!-- Header -->
+<div style="background-color: #c2111a; padding: 5px 10px; text-align: center;">
+    <a href="https://www.musicapps4all.com" rel="noopener noreferrer" style="text-decoration: none; color: white;">
+        <h1 style="font-family: 'Pacifico', cursive; margin: 0; font-size: 24px; font-weight: normal;">
+            <!-- !!! IMPORTANT: Change this to the name of your app !!! -->
+            The Improviser
+        </h1>
+    </a>
+</div>
+<!-- ===== App Header End ===== -->
+    <div id="app-wrapper">
+        <div class="master-controls-bar">
+            <!-- First row - Main controls -->
+            <div class="controls-row">
+                <div id="keyboard-icon-container" class="keyboard-control-area">
+                    <svg id="keyboard-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+                        <line x1="6" y1="10" x2="6" y2="10"></line>
+                        <line x1="10" y1="10" x2="10" y2="10"></line>
+                        <line x1="14" y1="10" x2="14" y2="10"></line>
+                        <line x1="18" y1="10" x2="18" y2="10"></line>
+                        <line x1="8" y1="14" x2="8" y2="14"></line>
+                        <line x1="12" y1="14" x2="12" y2="14"></line>
+                        <line x1="16" y1="14" x2="16" y2="14"></line>
+                        <line x1="7" y1="18" x2="17" y2="18"></line>
+                    </svg>
+                </div>
+
+                <div class="control-area key-control-area">
+                    <div class="arrow" id="key-left">&#9664;</div>
+                    <div id="key-name">C</div>
+                    <div class="arrow" id="key-right">&#9654;</div>
+                </div>
+                
+                <div class="control-area scale-control-area">
+                    <select id="scale-select">
+                        <option value="major">Major</option>
+                        <option value="natural-minor">Natural Minor</option>
+                        <option value="harmonic-minor">Harmonic Minor</option>
+                        <option value="melodic-minor">Melodic Minor</option>
+                        <option value="dorian">Dorian</option>
+                        <option value="phrygian">Phrygian</option>
+                        <option value="lydian">Lydian</option>
+                        <option value="mixolydian">Mixolydian</option>
+                        <option value="locrian">Locrian</option>
+                    </select>
+                </div>
+                
+                <div id="name-toggle-btn" class="control-box" title="Show names">
+                    <svg class="glasses-icon" width="22" height="12" viewBox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="6" cy="10" rx="6" ry="7" stroke="currentColor" stroke-width="2.5" fill="none"/>
+                        <ellipse cx="22" cy="10" rx="6" ry="7" stroke="currentColor" stroke-width="2.5" fill="none"/>
+                        <rect x="10.8" y="8.5" width="6.4" height="3" rx="1.5" fill="currentColor"/>
+                        <circle cx="6" cy="10" r="1.5" fill="currentColor"/>
+                        <circle cx="22" cy="10" r="1.5" fill="currentColor"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Second row - Sound controls with a 20px buffer between them -->
+            <div class="sound-controls-row">
+                <div class="control-area chord-control-area">
+                    <span class="sound-label">Chord</span>
+                    <div class="arrow" id="chord-sound-left">&#9664;</div>
+                    <div id="chord-sound-name" class="sound-name">triangle</div>
+                    <div class="arrow" id="chord-sound-right">&#9654;</div>
+                </div>
+                
+                <!-- This is the 20px buffer with a vertical divider -->
+                <div class="sound-buffer"></div>
+                
+                <div class="control-area note-control-area">
+                    <span class="sound-label">Note</span>
+                    <div class="arrow" id="note-sound-left">&#9664;</div>
+                    <div id="note-sound-name" class="sound-name">triangle</div>
+                    <div class="arrow" id="note-sound-right">&#9654;</div>
+                </div>
+            </div>
+        </div>
+        <div id="app-container">
+            <div id="touch-overlay"></div>
+            <iframe id="chord-app" src="./chord-app/index.html" title="Chord App"></iframe>
+            <iframe id="note-app" src="./note-app/index.html" title="Note App"></iframe>
+        </div>
+    </div>
+    
+    <!-- Keyboard Modal -->
+    <div id="keyboard-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="toggle-switch-container">
+                <label class="toggle-label">Keys</label>
+                <label class="switch">
+                    <input type="checkbox" id="keyboard-toggle">
+                    <span class="slider round"></span>
+                </label>
+                <label class="toggle-label">Notes</label>
+            </div>
+            <div id="simulated-keyboard">
+                <div class="key-row">
+                    <div class="key" data-key="`">~ `</div>
+                    <div class="key" data-key="1">! 1</div>
+                    <div class="key" data-key="2">@ 2</div>
+                    <div class="key" data-key="3"># 3</div>
+                    <div class="key" data-key="4">$ 4</div>
+                    <div class="key" data-key="5">% 5</div>
+                    <div class="key" data-key="6">^ 6</div>
+                    <div class="key" data-key="7">& 7</div>
+                    <div class="key" data-key="8">* 8</div>
+                    <div class="key" data-key="9">( 9</div>
+                    <div class="key" data-key="0">) 0</div>
+                    <div class="key" data-key="-">_ -</div>
+                    <div class="key" data-key="=">+ =</div>
+                </div>
+                <div class="key-row">
+                    <div class="key" data-key="q">Q</div>
+                    <div class="key" data-key="w">W</div>
+                    <div class="key" data-key="e">E</div>
+                    <div class="key" data-key="r">R</div>
+                    <div class="key" data-key="t">T</div>
+                    <div class="key" data-key="y">Y</div>
+                    <div class="key" data-key="u">U</div>
+                    <div class="key" data-key="i">I</div>
+                    <div class="key" data-key="o">O</div>
+                    <div class="key" data-key="p">P</div>
+                    <div class="key" data-key="[">{ [</div>
+                    <div class="key" data-key="]">} ]</div>
+                </div>
+                <div class="key-row">
+                    <div class="key" data-key="a">A</div>
+                    <div class="key" data-key="s">S</div>
+                    <div class="key" data-key="d">D</div>
+                    <div class="key" data-key="f">F</div>
+                    <div class="key" data-key="g">G</div>
+                    <div class="key" data-key="h">H</div>
+                    <div class="key" data-key="j">J</div>
+                    <div class="key" data-key="k">K</div>
+                    <div class="key" data-key="l">L</div>
+                    <div class="key" data-key=";">: ;</div>
+                    <div class="key" data-key="'">" '</div>
+                </div>
+                <div class="key-row">
+                    <div class="key" data-key="z">Z</div>
+                    <div class="key" data-key="x">X</div>
+                    <div class="key" data-key="c">C</div>
+                    <div class="key" data-key="v">V</div>
+                    <div class="key" data-key="b">B</div>
+                    <div class="key" data-key="n">N</div>
+                    <div class="key" data-key="m">M</div>
+                    <div class="key" data-key=",">&lt; ,</div>
+                    <div class="key" data-key=".">&gt; .</div>
+                    <div class="key" data-key="/">? /</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
