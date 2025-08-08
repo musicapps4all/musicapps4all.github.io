@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recorder Note Player</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 10px 0 0 0;
+      font-family: sans-serif;
+      background: white;
+      width: 100vw;
+      min-height: 100vh;
+    }
+    body {
+      min-height: 100vh;
+      min-width: 100vw;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .app-center-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
+      min-width: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .scaling-outer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-origin: center center;
+    }
+    .scaling-wrapper {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    img#recorderImage {
+      height: 500px;
+      width: auto;
+      display: block;
+    }
+    .note-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 3px;
+    }
+    .note-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .note-box {
+      width: 60px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      cursor: pointer;
+      color: white;
+      position: relative;
+    }
+    .note-box.active {
+      transform: scale(1.15);
+      transition: transform 0.1s ease;
+    }
+    .keybinding-label {
+      font-size: 0.82em;
+      color: #444;
+      opacity: 0.75;
+      vertical-align: middle;
+      user-select: none;
+      font-family: monospace, monospace;
+      min-width: 1.3em;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      height: 40px;
+    }
+  </style>
+</head>
+<body>
+<!-- ===== App Header Start ===== -->
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+<!-- Header -->
+<div style="position: fixed; top: 0; left: 0; right: 0; width: 100%; z-index: 9999; background-color: #e69e22; padding: 5px 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+    <a href="https://www.musicapps4all.com" rel="noopener noreferrer" style="text-decoration: none; color: white;">
+        <h1 style="font-family: 'Lobster', cursive; margin: 0; font-size: 24px; font-weight: normal;">
+            <!-- !!! IMPORTANT: Change this to the name of your app !!! -->
+          Virtual Recorder
+        </h1>
+    </a>
+</div>
+<!-- ===== App Header End ===== -->
+  <div class="app-center-container">
+    <div class="scaling-outer" id="scaling-outer">
+      <div class="scaling-wrapper" id="scaling-wrapper">
+        <img id="recorderImage" src="./assets/Recorder Pngs0001.png" alt="Recorder" />
+        <div class="note-container" id="noteContainer"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Keybinding map, matches order in notes array. 
+    const keybindings = ['1','2','3','4','5','6','7','8','9','0'];
+
+    const notes = [
+      { label: "C", pitch: "C4", color: "#FF0000", image: "./assets/Recorder Pngs0002.png" },
+      { label: "D", pitch: "D4", color: "#FFA500", image: "./assets/Recorder Pngs0003.png" },
+      { label: "E", pitch: "E4", color: "#FFFF00", image: "./assets/Recorder Pngs0004.png" },
+      { label: "F#", pitch: "F#4", color: "#00FF00", image: "./assets/Recorder Pngs0006.png" },
+      { label: "G", pitch: "G4", color: "#40E0D0", image: "./assets/Recorder Pngs0007.png" },
+      { label: "A", pitch: "A4", color: "#0000FF", image: "./assets/Recorder Pngs0008.png" },
+      { label: "B", pitch: "B4", color: "#800080", image: "./assets/Recorder Pngs0009.png" },
+      { label: "C", pitch: "C5", color: "#FF0000", image: "./assets/Recorder Pngs0010.png" },
+      { label: "D", pitch: "D5", color: "#FFA500", image: "./assets/Recorder Pngs0011.png" },
+      { label: "E", pitch: "E5", color: "#FFFF00", image: "./assets/Recorder Pngs0012.png" },
+    ];
+
+    const noteContainer = document.getElementById("noteContainer");
+
+    notes.forEach((note, index) => {
+      // Each note row contains the box and the keybinding number to its right
+      const row = document.createElement("div");
+      row.className = "note-row";
+      
+      const box = document.createElement("div");
+      box.className = "note-box";
+      box.textContent = note.label;
+      box.style.backgroundColor = note.color;
+      box.style.color = note.label === "E" ? "#444" : "white";
+      box.dataset.pitch = note.pitch;
+      box.dataset.index = index;
+
+      // Create the keybinding label
+      const keyLabel = document.createElement("span");
+      keyLabel.className = "keybinding-label";
+      keyLabel.textContent = keybindings[index] || "";
+      keyLabel.title = `Press ${keybindings[index] || ""} to play ${note.label}`;
+
+      row.appendChild(box);
+      row.appendChild(keyLabel);
+
+      noteContainer.prepend(row); 
+    });
+
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioCtx = new AudioContext();
+    const activeOscillators = {};
+
+    function midiToFreq(note) {
+      const noteMap = {
+        C: 0, Cs: 1, D: 2, Ds: 3, E: 4, F: 5, Fs: 6, G: 7, Gs: 8, A: 9, As: 10, B: 11
+      };
+      const match = note.match(/^([A-G]#?)(\d)$/);
+      if (!match) return 440;
+      const [, name, octave] = match;
+      const semitone = noteMap[name.replace('#', 's')];
+      return 440 * Math.pow(2, (semitone + (octave - 4) * 12 - 9) / 12);
+    }
+
+    function startNote(note) {
+      if (activeOscillators[note]) return;
+      const oscillator = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      oscillator.type = "triangle";
+      oscillator.frequency.setValueAtTime(midiToFreq(note), audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+      oscillator.connect(gain).connect(audioCtx.destination);
+      oscillator.start();
+      activeOscillators[note] = { oscillator, gain };
+    }
+
+    function stopNote(note) {
+      const active = activeOscillators[note];
+      if (active) {
+        active.gain.gain.setTargetAtTime(0.0001, audioCtx.currentTime, 0.2);
+        active.oscillator.stop(audioCtx.currentTime + 0.5);
+        delete activeOscillators[note];
+      }
+    }
+
+    document.querySelectorAll('.note-box').forEach(box => {
+      box.addEventListener('mousedown', () => {
+        startNote(box.dataset.pitch);
+        const image = document.getElementById('recorderImage');
+        const note = notes.find(n => n.pitch === box.dataset.pitch);
+        if (image && note?.image) image.src = note.image;
+        box.classList.add('active');
+      });
+      box.addEventListener('mouseup', () => {
+        stopNote(box.dataset.pitch);
+        box.classList.remove('active');
+      });
+      box.addEventListener('mouseleave', () => {
+        stopNote(box.dataset.pitch);
+        box.classList.remove('active');
+      });
+      box.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        startNote(box.dataset.pitch);
+        const image = document.getElementById('recorderImage');
+        const note = notes.find(n => n.pitch === box.dataset.pitch);
+        if (image && note?.image) image.src = note.image;
+        box.classList.add('active');
+      }, { passive: false });
+      box.addEventListener('touchend', () => {
+        stopNote(box.dataset.pitch);
+        box.classList.remove('active');
+      });
+    });
+
+    window.addEventListener('keydown', e => {
+      const keyMap = {
+        '1': 0, '2': 1, '3': 2, '4': 3, '5': 4,
+        '6': 5, '7': 6, '8': 7, '9': 8, '0': 9
+      };
+      const index = keyMap[e.key];
+      if (index !== undefined) {
+        const pitch = notes[index].pitch;
+        startNote(pitch);
+        const image = document.getElementById('recorderImage');
+        const note = notes.find(n => n.pitch === pitch);
+        if (image && note?.image) image.src = note.image;
+        const box = document.querySelector(`.note-box[data-pitch='${pitch}']`);
+        if (box) box.classList.add('active');
+      }
+    });
+
+    window.addEventListener('keyup', e => {
+      const keyMap = {
+        '1': 0, '2': 1, '3': 2, '4': 3, '5': 4,
+        '6': 5, '7': 6, '8': 7, '9': 8, '0': 9
+      };
+      const index = keyMap[e.key];
+      if (index !== undefined) {
+        const pitch = notes[index].pitch;
+        stopNote(pitch);
+        const box = document.querySelector(`.note-box[data-pitch='${pitch}']`);
+        if (box) box.classList.remove('active');
+      }
+    });
+
+    document.body.addEventListener('mousedown', e => {
+      if (!e.target.classList.contains('note-box')) {
+        const image = document.getElementById('recorderImage');
+        image.src = "./assets/Recorder Pngs0001.png";
+      }
+    });
+
+    document.body.addEventListener('touchstart', e => {
+      if (!e.target.classList.contains('note-box')) {
+        const image = document.getElementById('recorderImage');
+        image.src = "./assets/Recorder Pngs0001.png";
+      }
+    }, { passive: true });
+
+    // Responsive scaling: shrink the whole app proportionally if needed (height only)
+    function updateScale() {
+      const outer = document.getElementById('scaling-outer');
+      // DESIGN SIZE: height = 500px (matches recorder image)
+      const designHeight = 500;
+      const availableHeight = window.innerHeight * 0.98;
+      const scale = Math.min(1, availableHeight / designHeight);
+      outer.style.transform = `scale(${scale})`;
+    }
+    window.addEventListener('resize', updateScale);
+    window.addEventListener('load', updateScale);
+    updateScale();
+  </script>
+</body>
+</html>

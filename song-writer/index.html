@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musical Notation Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ===== App Header Start ===== -->
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+
+<!-- Header -->
+<div style="position: fixed; top: 0; left: 0; right: 0; width: 100%; z-index: 9999; background-color: #9c168e; padding: 5px 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+    <a href="https://www.musicapps4all.com" rel="noopener noreferrer" style="text-decoration: none; color: white;">
+        <h1 style="font-family: 'Caveat', cursive; margin: 0; font-size: 26px; font-weight: normal;">
+            <!-- !!! IMPORTANT: Change this to the name of your app !!! -->
+            Song Writer
+        </h1>
+    </a>
+</div>
+<!-- ===== App Header End ===== -->
+    <div class="main-container">
+        <div class="notation-container">
+            <!-- First Line -->
+            <div class="notation-line">
+                <input type="text" class="line-label" placeholder="Section Title" maxlength="15">
+                <div class="syllable">
+                    <div class="note do">
+                        <div class="letter-name">C</div>
+                        <div class="solfege-name">do</div>
+                    </div>
+                    <div class="text">Twin</div>
+                </div>
+                <div class="syllable">
+                    <div class="note do">
+                        <div class="letter-name">C</div>
+                        <div class="solfege-name">do</div>
+                    </div>
+                    <div class="text">kle</div>
+                </div>
+                <div class="syllable">
+                    <div class="note so">
+                        <div class="letter-name">G</div>
+                        <div class="solfege-name">so</div>
+                    </div>
+                    <div class="text">twin</div>
+                </div>
+                <div class="syllable">
+                    <div class="note so">
+                        <div class="letter-name">G</div>
+                        <div class="solfege-name">so</div>
+                    </div>
+                    <div class="text">kle</div>
+                </div>
+                <div class="syllable">
+                    <div class="note la">
+                        <div class="letter-name">A</div>
+                        <div class="solfege-name">la</div>
+                    </div>
+                    <div class="text">lit</div>
+                </div>
+                <div class="syllable">
+                    <div class="note la">
+                        <div class="letter-name">A</div>
+                        <div class="solfege-name">la</div>
+                    </div>
+                    <div class="text">tle</div>
+                </div>
+                <div class="syllable">
+                    <div class="note so">
+                        <div class="letter-name">G</div>
+                        <div class="solfege-name">so</div>
+                    </div>
+                    <div class="text">star</div>
+                </div>
+            </div>
+
+            <!-- Second Line -->
+            <div class="notation-line">
+                <input type="text" class="line-label" placeholder="Section Title" maxlength="15">
+                <div class="syllable">
+                    <div class="note fa">
+                        <div class="letter-name">F</div>
+                        <div class="solfege-name">fa</div>
+                    </div>
+                    <div class="text">How</div>
+                </div>
+                <div class="syllable">
+                    <div class="note mi">
+                        <div class="letter-name">E</div>
+                        <div class="solfege-name">mi</div>
+                    </div>
+                    <div class="text">I</div>
+                </div>
+                <div class="syllable">
+                    <div class="note re">
+                        <div class="letter-name">D</div>
+                        <div class="solfege-name">re</div>
+                    </div>
+                    <div class="text">won</div>
+                </div>
+                <div class="syllable">
+                    <div class="note do">
+                        <div class="letter-name">C</div>
+                        <div class="solfege-name">do</div>
+                    </div>
+                    <div class="text">der</div>
+                </div>
+                <div class="syllable">
+                    <div class="note do">
+                        <div class="letter-name">C</div>
+                        <div class="solfege-name">do</div>
+                    </div>
+                    <div class="text">what</div>
+                </div>
+                <div class="syllable">
+                    <div class="note so">
+                        <div class="letter-name">G</div>
+                        <div class="solfege-name">so</div>
+                    </div>
+                    <div class="text">you</div>
+                </div>
+                <div class="syllable">
+                    <div class="note so">
+                        <div class="letter-name">G</div>
+                        <div class="solfege-name">so</div>
+                    </div>
+                    <div class="text">are</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Controls -->
+    <div class="bottom-controls-group" id="controlsGroup">
+        <!-- Navigation Arrows with Minimize Button -->
+        <div class="floating-navigation">
+            <button class="minimize-btn" id="minimizeBtn">▼</button>
+            <button class="arrow-btn" id="leftArrow">◀</button>
+            <button class="arrow-btn" id="rightArrow">▶</button>
+        </div>
+
+        <!-- Chord Boxes (appear above the control panel when chord mode is active) -->
+        <div class="chord-boxes" id="chordBoxes">
+            <div class="chord-box-container">
+                <div class="chord-box-number">1</div>
+                <div class="chord-box" data-chord="I" data-key="1">I</div>
+            </div>
+            <div class="chord-box-container">
+                <div class="chord-box-number">2</div>
+                <div class="chord-box" data-chord="ii" data-key="2">ii</div>
+            </div>
+            <div class="chord-box-container">
+                <div class="chord-box-number">3</div>
+                <div class="chord-box" data-chord="iii" data-key="3">iii</div>
+            </div>
+            <div class="chord-box-container">
+                <div class="chord-box-number">4</div>
+                <div class="chord-box" data-chord="IV" data-key="4">IV</div>
+            </div>
+            <div class="chord-box-container">
+                <div class="chord-box-number">5</div>
+                <div class="chord-box" data-chord="V" data-key="5">V</div>
+            </div>
+            <div class="chord-box-container">
+                <div class="chord-box-number">6</div>
+                <div class="chord-box" data-chord="vi" data-key="6">vi</div>
+            </div>
+            <div class="chord-box-container">
+                <div class="chord-box-number">7</div>
+                <div class="chord-box" data-chord="V/V" data-key="7">V/V</div>
+            </div>
+            <div class="chord-box-container">
+                <div class="chord-box-number">8</div>
+                <div class="chord-box" data-chord="V/vi" data-key="8">V/vi</div>
+            </div>
+            <div class="chord-box-container">
+                <div class="chord-box-number">9</div>
+                <div class="chord-box" data-chord="IV/IV" data-key="9">IV/IV</div>
+            </div>
+        </div>
+
+        <!-- Control Panel -->
+        <div class="bottom-controls">
+            <!-- Upload-Only Controls Row (Hidden by default) -->
+            <div class="edit-controls upload-controls" id="uploadControls">
+                <!-- New Line Button -->
+                <div class="control-group">
+                    <button class="new-line-btn" id="newLineBtn" title="Add new line from text">¶</button>
+                </div>
+                               <!-- Copy Visual Button -->
+                <div class="control-group">
+                    <button class="icon-btn" id="copyVisualBtn" title="Copy visual">📷</button>
+                </div>
+                <div class="control-group">
+                    <select class="key-selector" id="preloadedSongsSelector">
+                        <option value="" disabled selected>Load Song...</option>
+                        <option value="new-song">New Song</option>
+                        <option value="twinkle">Twinkle Twinkle</option>
+                        <option value="mary">Mary Had a Little Lamb</option>
+                        <option value="starspangledbanner">Star Spangled Banner</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Edit-Only Controls Row (Hidden by default) -->
+            <div class="edit-controls edit-only-controls" id="editOnlyControls">
+                <!-- Accidental Toggle Button -->
+                <div class="accidental-toggle" id="accidentalToggle" title="Accidentals: Flat, Sharp">
+                    <div class="accidental-option" data-type="flat">♭</div>
+                    <div class="accidental-option" data-type="sharp">♯</div>
+                </div>
+
+                <!-- Enter Key Button -->
+                <div class="control-group">
+                    <button class="enter-key-btn" id="enterKeyBtn" title="Create new line">
+                        <svg class="enter-key-icon" viewBox="0 0 24 24" width="24" height="24">
+                            <polyline points="9 10 4 15 9 20" stroke-width="2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M20 5v10H4" stroke-width="2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Add Syllable Button -->
+                <div class="control-group">
+                    <button class="add-btn" id="addBtn">+</button>
+                </div>
+
+                <!-- Delete Syllable Button -->
+                <div class="control-group">
+                    <button class="delete-btn" id="deleteBtn" title="Delete syllable (click twice)">
+                        <svg class="trash-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Trash can lid -->
+                            <path d="M3 6h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <!-- Trash can body -->
+                            <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="roun[...]
+                            <!-- Vertical lines in trash -->
+                            <path d="M10 11v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M14 11v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Standard Controls Row (Always visible) -->
+            <div class="edit-controls standard-controls">
+                <!-- Key Selector Custom Component -->
+                <div class="control-group key-signature-group">
+                    <div class="key-signature-display" id="keySignatureDisplay">C</div>
+                    <div class="key-signature-popup" id="keySignaturePopup">
+                        <div class="key-option" data-key="C">C</div>
+                        <div class="key-option" data-key="Db">D♭</div>
+                        <div class="key-option" data-key="D">D</div>
+                        <div class="key-option" data-key="Eb">E♭</div>
+                        <div class="key-option" data-key="E">E</div>
+                        <div class="key-option" data-key="F">F</div>
+                        <div class="key-option" data-key="F#">F♯</div>
+                        <div class="key-option" data-key="Gb">G♭</div>
+                        <div class="key-option" data-key="G">G</div>
+                        <div class="key-option" data-key="Ab">A♭</div>
+                        <div class="key-option" data-key="A">A</div>
+                        <div class="key-option" data-key="Bb">B♭</div>
+                        <div class="key-option" data-key="B">B</div>
+                    </div>
+                </div>
+
+                <!-- Chord Toggle Button -->
+                <div class="control-group">
+                    <button class="icon-btn" id="chordToggle" title="Chord mode">
+                        <svg class="piano-keys-icon" width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- White keys -->
+                            <rect x="2" y="4" width="6" height="14" rx="1" fill="white" stroke="currentColor" stroke-width="1"/>
+                            <rect x="8" y="4" width="6" height="14" rx="1" fill="white" stroke="currentColor" stroke-width="1"/>
+                            <rect x="14" y="4" width="6" height="14" rx="1" fill="white" stroke="currentColor" stroke-width="1"/>
+                            <rect x="20" y="4" width="6" height="14" rx="1" fill="white" stroke="currentColor" stroke-width="1"/>
+                            
+                            <!-- Black keys -->
+                            <rect x="5.5" y="4" width="3" height="9" rx="0.5" fill="currentColor"/>
+                            <rect x="11.5" y="4" width="3" height="9" rx="0.5" fill="currentColor"/>
+                            <rect x="17.5" y="4" width="3" height="9" rx="0.5" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Edit Mode with Construction Hat -->
+                <div class="control-group">
+                    <button class="icon-btn" id="editToggle" title="Edit mode">
+                        <svg class="construction-hat-icon" width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Hard hat dome -->
+                            <path d="M4 12 C4 6, 10 2, 14 2 C18 2, 24 6, 24 12 L24 14 L4 14 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+                            <!-- Hat brim -->
+                            <ellipse cx="14" cy="14" rx="12" ry="3" fill="currentColor"/>
+                            <!-- Center ridge -->
+                            <path d="M14 2 L14 12" stroke="white" stroke-width="1.5" opacity="0.8"/>
+                            <!-- Side details -->
+                            <circle cx="8" cy="8" r="1" fill="white" opacity="0.6"/>
+                            <circle cx="20" cy="8" r="1" fill="white" opacity="0.6"/>
+                        </svg>
+                    </button>
+                    <input type="checkbox" id="editMode" style="display: none;">
+                </div>
+                
+                <!-- Save/Load Button -->
+                <div class="control-group">
+                    <button class="icon-btn" id="saveLoadBtn" title="Save/Load songs">
+                        <svg class="save-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Names Toggle with Glasses -->
+                <div class="control-group">
+                    <button class="icon-btn" id="nameToggle" title="Show names">
+                        <svg class="glasses-icon" width="28" height="18" viewBox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="6" cy="10" rx="6" ry="7" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <ellipse cx="22" cy="10" rx="6" ry="7" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <!-- Shortened bridge - 60% shorter -->
+                            <rect x="10.8" y="8.5" width="6.4" height="3" rx="1.5" fill="currentColor"/>
+                            <circle cx="6" cy="10" r="1.5" fill="currentColor"/>
+                            <circle cx="22" cy="10" r="1.5" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+                <!-- Color Scheme Toggle Button -->
+                <div class="control-group">
+                    <button class="icon-btn" id="colorSchemeToggle" title="Toggle Color Scheme">
+                        <svg class="color-scheme-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 7 L 21 21 H 7 V 7 Z" fill="#ADD8E6"/>
+                            <path d="M7 7 L 21 7 L 21 21 Z" fill="#FFB6C1"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- New Line Popup -->
+    <div class="popup-overlay" id="newLinePopup">
+        <div class="popup-content">
+            <h3>Add New Line from Text</h3>
+            <textarea 
+                id="newLineText" 
+                placeholder="Enter your text here. Make a space between each syllable..."
+                rows="6"
+            ></textarea>
+            <div class="popup-buttons">
+                <div class="popup-action-buttons">
+                    <svg id="copyLyricsBtn" class="copy-icon" viewBox="0 0 24 24" width="24" height="24" title="Copy to clipboard">
+                        <rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M4 16H2V4h12V2" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                    <button class="popup-btn cancel-btn" id="cancelNewLine">Cancel</button>
+                    <button class="popup-btn submit-btn" id="submitNewLine">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="songs.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
