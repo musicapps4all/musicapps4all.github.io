@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Music Symbol Tracing App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ===== App Header Start ===== -->
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+
+<!-- Header -->
+<div style="position: fixed; top: 0; left: 0; right: 0; width: 100%; z-index: 9999; background-color: #edd132; padding: 5px 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+    <a href="https://www.musicapps4all.com" rel="noopener noreferrer" style="text-decoration: none; color: white;">
+        <h1 style="font-family: 'Gochi Hand', cursive; margin: 0; font-size: 24px; font-weight: normal;">
+            <!-- !!! IMPORTANT: Change this to the name of your app !!! -->
+            Music Symbol Maker
+        </h1>
+    </a>
+</div>
+<!-- ===== App Header End ===== -->
+  <button class="toggle-sidebar">☰</button>
+  <div class="container">
+    <div class="sidebar">
+      <div class="toolbar-section" id="imgSelector">
+        <button id="prevImg" class="img-arrow" title="Previous" aria-label="Previous">
+          <svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:middle;"><polyline points="12,3 6,9 12,15" stroke="#3060b0" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+        </button>
+        <span id="imgName"></span>
+        <button id="nextImg" class="img-arrow" title="Next" aria-label="Next">
+          <svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:middle;"><polyline points="6,3 12,9 6,15" stroke="#3060b0" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+        </button>
+      </div>
+      
+      <div class="toolbar-section">
+        <strong>Drawing Tool</strong>
+        <div class="tool-options">
+          <div class="tool-container">
+            <button id="penBtn" class="selected">✏️ Pencil</button>
+          </div>
+          <div class="tool-container">
+            <button id="eraserBtn">🧽 Eraser</button>
+          </div>
+        </div>
+        
+        <div class="size-options">
+          <div class="size-circle" data-size="3" title="Small"></div>
+          <div class="size-circle selected" data-size="6" title="Medium"></div>
+          <div class="size-circle" data-size="12" title="Large"></div>
+          <div class="size-circle" data-size="50" data-bg="true" title="HUGE!"></div>
+        </div>
+      </div>
+      
+      <div class="toolbar-section">
+        <strong>Rainbow Colors</strong>
+        <div class="color-buttons">
+          <div class="color-button selected" style="background-color: #000000;" data-color="#000000"></div>
+          <div class="color-button" style="background-color: #FF0000;" data-color="#FF0000"></div>
+          <div class="color-button" style="background-color: #FF9900;" data-color="#FF9900"></div>
+          <div class="color-button" style="background-color: #FFFF00;" data-color="#FFFF00"></div>
+          <div class="color-button" style="background-color: #00FF00;" data-color="#00FF00"></div>
+          <div class="color-button" style="background-color: #0000FF;" data-color="#0000FF"></div>
+          <div class="color-button" style="background-color: #9900FF;" data-color="#9900FF"></div>
+          <div class="color-button" style="background-color: #FF00FF;" data-color="#FF00FF"></div>
+        </div>
+        <input type="color" id="colorPicker" value="#000000">
+      </div>
+    </div>
+    <div class="canvas-wrapper">
+      <div class="canvas-container">
+        <canvas id="baseCanvas"></canvas>
+        <canvas id="bgCanvas"></canvas>
+        <canvas id="drawCanvas"></canvas>
+      </div>
+      <div class="canvas-controls">
+        <button id="clearBtn">🧹 Start Over</button>
+        <button id="hideImageBtn">👁️ Hide/Show</button>
+        <button id="copyBtn">📷 Copy Image</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

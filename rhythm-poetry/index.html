@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rhythmic Poetry Editor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <!-- ===== App Header Start ===== -->
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<!-- Header -->
+<div style="position: fixed; top: 0; left: 0; right: 0; width: 100%; z-index: 9999; background-color: #141b91; padding: 5px 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+    <a href="https://www.musicapps4all.com" rel="noopener noreferrer" style="text-decoration: none; color: white;">
+        <h1 style="font-family: 'Dancing Script', cursive; margin: 0; font-size: 24px; font-weight: normal;">
+            <!-- !!! IMPORTANT: Change this to the name of your app !!! -->
+            Rhythm Poetry
+        </h1>
+    </a>
+</div>
+<!-- ===== App Header End ===== -->
+  <div id="poem"></div>
+
+  <!-- Modal for text input -->
+  <div id="text-input-modal" class="modal-backdrop">
+    <div class="modal-content">
+      <h2>Enter Your Text</h2>
+      <textarea id="multi-line-input" placeholder="Enter text here..." spellcheck="false" autocapitalize="off" autocorrect="off"></textarea>
+      <div class="modal-actions">
+        <div class="toggle-container">
+            <button id="toggle-add-btn" class="toggle-button active">Add</button>
+            <button id="toggle-replace-btn" class="toggle-button">Replace</button>
+        </div>
+        <div class="modal-buttons">
+            <button id="modal-cancel-btn" class="modal-button">Cancel</button>
+            <button id="modal-copy-btn" class="modal-button copy-button">
+                <div class="copy-icon">
+                    <div class="copy-square copy-square-back"></div>
+                    <div class="copy-square copy-square-front"></div>
+                </div>
+            </button>
+            <button id="modal-submit-btn" class="modal-button submit">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Floating bottom panel -->
+  <div class="floating-panel" id="floating-panel">
+    <div class="play-button" id="play-button">▶</div>
+
+    <div class="control-button" id="bpm-button">
+      <span id="bpm-value">82</span>&nbsp;BPM
+    </div>
+
+    <div class="audio-controls">
+      <div class="checkbox-row beat">
+        <input type="checkbox" id="beat-checkbox" checked>
+        <label for="beat-checkbox">Beat</label>
+      </div>
+      <div class="checkbox-row rhythm">
+        <input type="checkbox" id="rhythm-checkbox" checked>
+        <label for="rhythm-checkbox">Rhythm</label>
+      </div>
+    </div>
+
+    <select id="lyrics-dropdown" class="control-button lyrics-dropdown"></select>
+    
+    <div class="ts-button-wrapper">
+      <div class="time-signature-button">
+        <div class="time-signature-top" id="time-signature-top-btn">4</div>
+        <div class="time-signature-bottom" id="time-signature-bottom-btn">4</div>
+      </div>
+    </div>
+
+    <div class="control-button sixteenth-note-button" id="sixteenth-note-btn">
+        <img src="./assets/Wordrhythms-16thicon.svg" alt="16th note mode">
+    </div>
+
+    <div class="control-button paragraph-button" id="paragraph-btn">¶</div>
+
+    <div class="control-button copy-visual-button" id="copy-visual-btn">📷</div>
+    
+    <div class="icon-button active" id="circle-icon">
+      <div class="icon-circles">
+        <div class="icon-circle"></div>
+        <div class="icon-circle"></div>
+      </div>
+    </div>
+  </div>
+  <button class="panel-toggle-button" id="panel-toggle-button"></button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
